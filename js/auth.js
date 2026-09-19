@@ -51,8 +51,8 @@ function updateAuthHeader() {
 // Fires on every sign-in, sign-out, and token refresh.
 // Guarded so that if this script ever gets accidentally included twice on
 // the same page, we don't register duplicate listeners.
-if (!window.__playzoneAuthInitialized) {
-  window.__playzoneAuthInitialized = true;
+if (!window.__gamoraAuthInitialized) {
+  window.__gamoraAuthInitialized = true;
 
   supabaseClient.auth.onAuthStateChange((_event, session) => {
     refreshAuthState(session ? session.user : null);

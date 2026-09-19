@@ -22,7 +22,7 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Mv6cDDRGl1QrUkDar5voBw_0NlQgoAU
 //   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 if (!window.supabase) {
   throw new Error(
-    "PLAYZONE: the Supabase library (supabase-js) did not load. " +
+    "GAMORA: the Supabase library (supabase-js) did not load. " +
     "Check your internet connection and that the CDN <script> tag loads before js/supabase.js."
   );
 }

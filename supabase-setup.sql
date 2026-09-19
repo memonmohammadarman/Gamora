@@ -1,4 +1,4 @@
--- PLAYZONE — STAGE 5 SUPABASE SCHEMA (idempotent — safe to re-run)
+-- GAMORA — STAGE 5 SUPABASE SCHEMA (idempotent — safe to re-run)
 -- Run this whole file in your Supabase project's SQL Editor
 -- (Supabase dashboard → SQL Editor → New query → paste this in → Run).
 --
@@ -49,7 +49,7 @@ create table if not exists public.game_stats (
 -- =========================================================
 -- 2. INDEXES
 -- =========================================================
--- Every query PLAYZONE makes filters by user_id, so these keep lookups fast
+-- Every query GAMORA makes filters by user_id, so these keep lookups fast
 -- as the tables grow.
 
 create index if not exists favorites_user_id_idx on public.favorites(user_id);

@@ -226,5 +226,5 @@ class BlockMasterGame {
   }
 }
 
-window.PlayzoneGames = window.PlayzoneGames || {};
-window.PlayzoneGames["block-master"] = () => new BlockMasterGame();
+window.GamoraGames = window.GamoraGames || {};
+window.GamoraGames["block-master"] = () => new BlockMasterGame();

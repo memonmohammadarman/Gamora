@@ -3,7 +3,7 @@
 // For logged-in users, this layers Supabase sync underneath the same
 // getRecentlyPlayedGames() call everything else already uses.
 
-const RECENT_KEY = "playzone-recent";
+const RECENT_KEY = "gamora-recent";
 const RECENT_LIMIT = 6;
 
 function getRecentIds() {
@@ -74,7 +74,7 @@ async function syncRecentWithCloud(user) {
       )
     );
 
-    document.dispatchEvent(new CustomEvent("playzone:recent-synced"));
+    document.dispatchEvent(new CustomEvent("gamora:recent-synced"));
   } catch (err) {
     console.error("Couldn't sync recently played with the cloud:", err);
   }

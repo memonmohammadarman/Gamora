@@ -11,10 +11,10 @@
 //   - After that, toggleFavorite() keeps updating localStorage immediately
 //     (so the UI never waits on a network request) and also pushes the
 //     change to Supabase in the background if someone's logged in.
-//   - Pages listen for the "playzone:favorites-synced" event to refresh
+//   - Pages listen for the "gamora:favorites-synced" event to refresh
 //     any cards that were already on screen before the cloud data arrived.
 
-const FAVORITES_KEY = "playzone-favorites";
+const FAVORITES_KEY = "gamora-favorites";
 
 function getFavoriteIds() {
   try {
@@ -117,7 +117,7 @@ async function syncFavoritesWithCloud(user) {
     await Promise.all(missingFromCloud.map((id) => pushFavoriteToCloud(id, true)));
 
     refreshAllFavoriteIcons();
-    document.dispatchEvent(new CustomEvent("playzone:favorites-synced"));
+    document.dispatchEvent(new CustomEvent("gamora:favorites-synced"));
   } catch (err) {
     console.error("Couldn't sync favorites with the cloud:", err);
   }

@@ -240,5 +240,5 @@ function randomRange(min, max) {
   return min + Math.random() * (max - min);
 }
 
-window.PlayzoneGames = window.PlayzoneGames || {};
-window.PlayzoneGames["shadow-arena"] = () => new ShadowArenaGame();
+window.GamoraGames = window.GamoraGames || {};
+window.GamoraGames["shadow-arena"] = () => new ShadowArenaGame();

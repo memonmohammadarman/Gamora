@@ -4,7 +4,7 @@
 // fills in its details from the games.js database, runs the shared state
 // machine (start → countdown → playing → game over), and hands off the
 // actual gameplay each frame to whichever module is registered for that
-// game's gameType in window.PlayzoneGames (see speed-rush.js for how one
+// game's gameType in window.GamoraGames (see speed-rush.js for how one
 // is built). This file's gameplay-facing logic — canvas setup, input
 // handling, the state machine, sound, fullscreen, restart — is unchanged
 // from Stage 3; everything new in Stage 4 (favorites, rating, plays,
@@ -13,7 +13,7 @@
 // To add a second playable game later:
 //   1. Write a new js/<your-game>.js following the same shape as speed-rush.js
 //      (reset, update, render, isOver, getScore, setInput, setSoundEnabled).
-//   2. Register it: window.PlayzoneGames["your-slug"] = () => new YourGame();
+//   2. Register it: window.GamoraGames["your-slug"] = () => new YourGame();
 //   3. Add a <script src="js/your-game.js"></script> to game.html.
 //   4. Set that game's "playable": true in js/games.js.
 // Nothing else on this page needs to change.
@@ -54,7 +54,7 @@ const newBestBadge = el("newBestBadge");
 
 function populatePage() {
   if (!gameData) {
-    document.title = "Game not found — PLAYZONE";
+    document.title = "Game not found — GAMORA";
     el("gameTitle").textContent = "Game not found";
     el("gameDesc").textContent = "We couldn't find a game for that link. Head back and pick one from a category.";
     el("gameIcon").textContent = "❓";
@@ -69,7 +69,7 @@ function populatePage() {
 
   const meta = CATEGORY_META[gameData.category];
 
-  document.title = `${gameData.title} — PLAYZONE`;
+  document.title = `${gameData.title} — GAMORA`;
   document.body.style.setProperty("--cat-color", meta.color);
   el("gameIcon").textContent = gameData.thumbnail;
   el("gameTitle").textContent = gameData.title;
@@ -114,24 +114,24 @@ function setupFavoriteButton() {
     applyState();
   });
   // Re-apply if a cloud sync (after login) changes the favorite state underneath us.
-  document.addEventListener("playzone:favorites-synced", applyState);
+  document.addEventListener("gamora:favorites-synced", applyState);
 }
 
 // ---------- Local play count (demo/local only, not a real global counter) ----------
 
 function getLocalPlayCount(id) {
-  return parseInt(localStorage.getItem(`playzone-playcount-${id}`) || "0", 10);
+  return parseInt(localStorage.getItem(`gamora-playcount-${id}`) || "0", 10);
 }
 
 function incrementLocalPlayCount(id) {
   const next = getLocalPlayCount(id) + 1;
-  localStorage.setItem(`playzone-playcount-${id}`, String(next));
+  localStorage.setItem(`gamora-playcount-${id}`, String(next));
 }
 
 // ---------- Your rating (local only — never presented as a global score) ----------
 
 function getUserRating(id) {
-  return parseInt(localStorage.getItem(`playzone-rating-${id}`) || "0", 10);
+  return parseInt(localStorage.getItem(`gamora-rating-${id}`) || "0", 10);
 }
 
 function setupStarRating() {
@@ -144,7 +144,7 @@ function setupStarRating() {
   stars.forEach((star, i) => {
     star.addEventListener("click", () => {
       const value = i + 1;
-      localStorage.setItem(`playzone-rating-${gameData.id}`, String(value));
+      localStorage.setItem(`gamora-rating-${gameData.id}`, String(value));
       applyStars(value);
     });
   });
@@ -154,7 +154,7 @@ populatePage();
 
 // ---------- High score ----------
 
-const highScoreKey = gameData ? `playzone-highscore-${gameData.id}` : null;
+const highScoreKey = gameData ? `gamora-highscore-${gameData.id}` : null;
 
 function loadBest() {
   if (!highScoreKey) return 0;
@@ -236,7 +236,7 @@ if (gameData) {
 
 // ---------- Sound toggle (persisted across the whole site) ----------
 
-let soundEnabled = localStorage.getItem("playzone-sound-enabled") !== "off";
+let soundEnabled = localStorage.getItem("gamora-sound-enabled") !== "off";
 
 function applySoundIcon() {
   soundBtn.textContent = soundEnabled ? "🔊" : "🔇";
@@ -246,14 +246,14 @@ applySoundIcon();
 
 soundBtn.addEventListener("click", () => {
   soundEnabled = !soundEnabled;
-  localStorage.setItem("playzone-sound-enabled", soundEnabled ? "on" : "off");
+  localStorage.setItem("gamora-sound-enabled", soundEnabled ? "on" : "off");
   applySoundIcon();
   if (activeGame) activeGame.setSoundEnabled(soundEnabled);
 });
 
 // ---------- Set up the game module (if this game is playable) ----------
 
-const factory = gameData ? window.PlayzoneGames?.[gameData.gameType] : null;
+const factory = gameData ? window.GamoraGames?.[gameData.gameType] : null;
 const activeGame = factory ? factory() : null;
 
 if (!activeGame && gameData) {

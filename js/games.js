@@ -1,4 +1,4 @@
-// PLAYZONE GAME DATABASE
+// GAMORA GAME DATABASE
 //
 // This is the single source of truth for every game on the site. To add a
 // new game, add one object here — see the bottom of this file for the
@@ -556,7 +556,7 @@ function formatPlays(n) {
        category: "action",             // must match a key in CATEGORY_META
        description: "One friendly sentence about it.",
        gameType: "my-new-game",        // matches the key you'll register in
-                                        // window.PlayzoneGames (see speed-rush.js)
+                                        // window.GamoraGames (see speed-rush.js)
        thumbnail: "🕹️",                // an emoji for now — swap for a real
                                         // image path later, e.g. "assets/images/my-new-game.jpg"
        featured: false,
@@ -567,7 +567,7 @@ function formatPlays(n) {
 
   2. If you want it actually playable (not just a card), create
      js/my-new-game.js following the same shape as speed-rush.js, register
-     it with `window.PlayzoneGames["my-new-game"] = () => new MyNewGame();`,
+     it with `window.GamoraGames["my-new-game"] = () => new MyNewGame();`,
      and add a <script src="js/my-new-game.js"></script> to game.html.
 
   That's it — it will automatically show up on its category page, in

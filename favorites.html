@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Favorites — PLAYZONE</title>
+<title>Your Favorites — GAMORA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -17,7 +17,7 @@
     <a href="index.html" class="home-link">← Home</a>
     <div class="logo">
       <span class="logo-mark">▣</span>
-      <span class="logo-text">PLAYZONE</span>
+      <span class="logo-text">GAMORA</span>
     </div>
     <div class="topbar-right">
       <div class="search-wrap">
@@ -47,7 +47,7 @@
   </main>
 
   <footer class="foot">
-    <p>PLAYZONE — tap the heart on any game card to add or remove it here. Log in to keep this list on every device.</p>
+    <p>GAMORA — tap the heart on any game card to add or remove it here. Log in to keep this list on every device.</p>
   </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -75,7 +75,7 @@
   document.addEventListener("DOMContentLoaded", renderFavPage);
   // Cloud favorites can arrive slightly after the initial render if the
   // user just logged in — refresh once that sync finishes.
-  document.addEventListener("playzone:favorites-synced", renderFavPage);
+  document.addEventListener("gamora:favorites-synced", renderFavPage);
 </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// The single source of truth for every game on PLAYZONE: title, icon,
+// The single source of truth for every game on GAMORA: title, icon,
 // description, which category it belongs to, and whether it's actually
 // playable yet. Category pages use this to wire up card clicks; game.html
 // uses it to fill in the game page and build the "More games" section.

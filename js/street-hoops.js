@@ -180,5 +180,5 @@ class StreetHoopsGame {
   }
 }
 
-window.PlayzoneGames = window.PlayzoneGames || {};
-window.PlayzoneGames["street-hoops"] = () => new StreetHoopsGame();
+window.GamoraGames = window.GamoraGames || {};
+window.GamoraGames["street-hoops"] = () => new StreetHoopsGame();

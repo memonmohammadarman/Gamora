@@ -313,5 +313,5 @@ class SpeedRushGame {
 }
 
 // Register this game so game.js can find it by slug.
-window.PlayzoneGames = window.PlayzoneGames || {};
-window.PlayzoneGames["speed-rush"] = () => new SpeedRushGame();
+window.GamoraGames = window.GamoraGames || {};
+window.GamoraGames["speed-rush"] = () => new SpeedRushGame();

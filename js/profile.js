@@ -62,7 +62,7 @@ function renderRecentSection() {
 }
 
 // Cloud data can arrive slightly after the initial render — refresh once it does.
-document.addEventListener("playzone:favorites-synced", renderFavoritesSection);
-document.addEventListener("playzone:recent-synced", renderRecentSection);
+document.addEventListener("gamora:favorites-synced", renderFavoritesSection);
+document.addEventListener("gamora:recent-synced", renderRecentSection);
 
 el("logoutBtn").addEventListener("click", logOutUser);
