@@ -1,0 +1,64 @@
+/* Extends style.css tokens (--bg, --bg-raised, --line, --text, --text-dim)
+   and each page's own --cat-color, set inline on <body>. Card styles now
+   live in cards.css — this file only handles this page's own layout. */
+
+.cat-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 22px clamp(20px, 6vw, 64px) 0;
+}
+
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.home-link:hover { color: var(--text); }
+.home-link:focus-visible { outline: 2px solid var(--cat-color); outline-offset: 3px; }
+
+.cat-hero {
+  padding: clamp(28px, 6vw, 56px) clamp(20px, 6vw, 64px) clamp(20px, 4vw, 32px);
+}
+
+.cat-eyebrow {
+  color: var(--cat-color);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.cat-title {
+  font-family: "Bungee", sans-serif;
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cat-count {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin: 0;
+}
+
+.cat-cards-section {
+  padding: 12px clamp(20px, 6vw, 64px) 70px;
+}
+
+@media (max-width: 560px) {
+  .cat-title { font-size: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-link { transition: none; }
+}

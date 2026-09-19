@@ -1,0 +1,107 @@
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(20px, 6vw, 64px) 0;
+}
+
+.profile-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(32px, 6vw, 56px) 20px 28px;
+}
+
+.profile-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--amber) 30%, transparent), #14101c 78%);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.profile-username {
+  font-family: "Bungee", sans-serif;
+  font-size: 26px;
+  margin: 0 0 4px;
+}
+
+.profile-email {
+  color: var(--text-dim);
+  font-size: 13.5px;
+  margin: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.stat-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 12px;
+  text-align: center;
+}
+
+.stat-card .stat-value {
+  font-family: "Bungee", sans-serif;
+  font-size: 24px;
+  margin: 0 0 4px;
+}
+
+.stat-card .stat-label {
+  color: var(--text-dim);
+  font-size: 12px;
+  margin: 0;
+}
+
+.profile-section {
+  padding: 10px clamp(20px, 6vw, 64px) 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.profile-section-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dim);
+  margin: 0 0 16px;
+}
+
+.logout-area {
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px 60px;
+}
+
+.logout-btn {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  color: #ff8fa3;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout-btn:hover { border-color: #ff5d7a; }
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat-card { padding: 12px 6px; }
+  .stat-card .stat-value { font-size: 19px; }
+}

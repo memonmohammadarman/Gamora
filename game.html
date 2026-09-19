@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Loading… — PLAYZONE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/game.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body id="gameBody">
+
+  <header class="game-topbar">
+    <a href="index.html" class="home-link">🏠 Home</a>
+    <div class="logo">
+      <span class="logo-mark">▣</span>
+      <span class="logo-text">PLAYZONE</span>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search games…">
+        <button class="search-btn" id="searchBtn" aria-label="Search">⌕</button>
+      </div>
+      <a href="favorites.html" class="fav-nav-link">♥ Favorites</a>
+      <div class="auth-area">
+        <div class="auth-logged-out">
+          <a href="login.html" class="auth-btn ghost">Login</a>
+          <a href="signup.html" class="auth-btn solid">Sign Up</a>
+        </div>
+        <a href="profile.html" class="auth-logged-in hidden">
+          <span class="auth-username">👤 Account</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="game-hero">
+    <a href="index.html" class="back-link" id="backLink">← Back to category</a>
+    <div class="game-title-row">
+      <span class="icon" id="gameIcon">🎮</span>
+      <h1 id="gameTitle">Loading…</h1>
+      <button class="fav-btn-large" id="gameFavBtn">♡ Favorite</button>
+    </div>
+
+    <div class="stats-row" id="statsRow">
+      <span class="stat-chip" id="gameCategoryTag">—</span>
+      <span class="stat-chip" id="gameRating">⭐ —</span>
+      <span class="stat-chip" id="gamePlays">— plays</span>
+    </div>
+
+    <p class="game-tagline" id="gameDesc">Fetching game details…</p>
+    <p class="game-controls-hint" id="gameControls"></p>
+
+    <div class="your-rating">
+      <span class="your-rating-label">Your rating:</span>
+      <div class="star-row" id="starRow">
+        <button class="star" aria-label="Rate 1 star">★</button>
+        <button class="star" aria-label="Rate 2 stars">★</button>
+        <button class="star" aria-label="Rate 3 stars">★</button>
+        <button class="star" aria-label="Rate 4 stars">★</button>
+        <button class="star" aria-label="Rate 5 stars">★</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="game-panel">
+    <div class="game-area" id="gameArea">
+      <canvas class="game-canvas" id="gameCanvas"></canvas>
+
+      <div class="touch-controls">
+        <button class="touch-btn" id="touchLeft" aria-label="Move left">◀</button>
+        <button class="touch-btn" id="touchRight" aria-label="Move right">▶</button>
+      </div>
+
+      <div class="game-overlay" id="overlayStart">
+        <span class="overlay-emoji" id="overlayIcon">🎮</span>
+        <h2 class="overlay-title" id="overlayStartTitle">GAME</h2>
+        <p class="overlay-sub" id="overlayStartSub">How long can you survive?</p>
+        <button class="big-btn" id="playBtn">▶ PLAY</button>
+      </div>
+
+      <div class="game-overlay hidden" id="overlayCountdown">
+        <span class="countdown-number" id="countdownNumber">3</span>
+      </div>
+
+      <div class="game-overlay hidden" id="overlayGameOver">
+        <h2 class="overlay-title">GAME OVER</h2>
+        <div class="overlay-score-row">
+          <div>
+            <p class="overlay-score-label">Score</p>
+            <p class="overlay-score-value" id="finalScore">0000</p>
+          </div>
+          <div>
+            <p class="overlay-score-label">Best</p>
+            <p class="overlay-score-value" id="finalBest">0000</p>
+          </div>
+        </div>
+        <p class="overlay-new-best hidden" id="newBestBadge">🏆 New best score!</p>
+        <button class="big-btn" id="playAgainBtn">PLAY AGAIN</button>
+      </div>
+
+      <div class="game-overlay hidden" id="overlayComingSoon">
+        <span class="overlay-emoji">🚧</span>
+        <h2 class="overlay-title">Coming soon</h2>
+        <p class="overlay-sub">This game isn't built yet — Speed Rush is the only playable game so far.</p>
+      </div>
+    </div>
+
+    <div class="game-action-bar">
+      <div class="icon-btn-group">
+        <button class="icon-btn" id="restartBtn" aria-label="Restart">↻</button>
+        <button class="icon-btn" id="fullscreenBtn" aria-label="Fullscreen">⛶</button>
+        <button class="icon-btn" id="soundBtn" aria-label="Toggle sound">🔊</button>
+      </div>
+      <div class="score-bar">
+        <div>
+          <p class="label">SCORE</p>
+          <p class="value" id="liveScore">0000</p>
+        </div>
+        <div>
+          <p class="label">BEST</p>
+          <p class="value" id="liveBest">0000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <p class="related-heading">YOU MAY ALSO LIKE</p>
+    <div class="cards-grid" id="relatedGrid"></div>
+  </section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/games.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/recent.js"></script>
+<script src="js/game-library.js"></script>
+<script src="js/search.js"></script>
+<script src="js/speed-rush.js"></script>
+<script src="js/shadow-arena.js"></script>
+<script src="js/block-master.js"></script>
+<script src="js/street-hoops.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

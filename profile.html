@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Profile — PLAYZONE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/category.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+  <header class="profile-header">
+    <a href="index.html" class="home-link">← Home</a>
+    <div class="logo">
+      <span class="logo-mark">▣</span>
+      <span class="logo-text">PLAYZONE</span>
+    </div>
+    <div style="width:60px;"></div>
+  </header>
+
+  <section class="profile-hero">
+    <div class="profile-avatar">👤</div>
+    <h1 class="profile-username" id="profileUsername">Loading…</h1>
+    <p class="profile-email" id="profileEmail"></p>
+  </section>
+
+  <section class="stats-grid">
+    <div class="stat-card">
+      <p class="stat-value" id="statGamesPlayed">—</p>
+      <p class="stat-label">Games Played</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-value" id="statFavorites">—</p>
+      <p class="stat-label">Favorites</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-value" id="statBestScore">—</p>
+      <p class="stat-label">Best Score</p>
+    </div>
+  </section>
+
+  <section class="profile-section">
+    <p class="profile-section-heading">❤️ FAVORITE GAMES</p>
+    <div class="cards-grid" id="profileFavGrid"></div>
+  </section>
+
+  <section class="profile-section">
+    <p class="profile-section-heading">🕐 RECENTLY PLAYED</p>
+    <div class="cards-grid" id="profileRecentGrid"></div>
+  </section>
+
+  <div class="logout-area">
+    <button class="logout-btn" id="logoutBtn">LOG OUT</button>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/games.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/recent.js"></script>
+<script src="js/game-library.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>

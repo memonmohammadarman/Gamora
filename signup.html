@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — PLAYZONE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <a href="index.html" class="auth-logo">
+        <span class="logo-mark">▣</span>
+        <span class="logo-text">PLAYZONE</span>
+      </a>
+
+      <h1 class="auth-title">Create your account</h1>
+      <p class="auth-subtitle">Save favorites and scores across every device.</p>
+
+      <p class="auth-message hidden" id="authMessage"></p>
+
+      <form id="signupForm">
+        <div class="auth-field">
+          <label for="username">Username</label>
+          <input type="text" id="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers, and underscores only">
+        </div>
+
+        <div class="auth-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required autocomplete="email">
+        </div>
+
+        <div class="auth-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" required minlength="6" autocomplete="new-password">
+        </div>
+
+        <div class="auth-field">
+          <label for="confirmPassword">Confirm password</label>
+          <input type="password" id="confirmPassword" required minlength="6" autocomplete="new-password">
+        </div>
+
+        <button type="submit" class="auth-submit" id="submitBtn">CREATE ACCOUNT</button>
+      </form>
+
+      <p class="auth-footer-links">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  const messageEl = document.getElementById("authMessage");
+  const submitBtn = document.getElementById("submitBtn");
+
+  function showMessage(text, type) {
+    messageEl.textContent = text;
+    messageEl.className = `auth-message ${type}`;
+  }
+
+  onAuthReady((user) => {
+    if (user) window.location.href = "index.html";
+  });
+
+  document.getElementById("signupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      showMessage("Passwords don't match.", "error");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Creating account…";
+
+    const { data, error } = await signUpUser(email, password, username);
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "CREATE ACCOUNT";
+
+    if (error) {
+      showMessage(error.message, "error");
+      return;
+    }
+
+    if (data?.session) {
+      // Email confirmation is off in this project's Supabase settings — already logged in.
+      window.location.href = "index.html";
+    } else {
+      showMessage("Account created! Check your email to confirm it, then log in.", "success");
+    }
+  });
+</script>
+</body>
+</html>

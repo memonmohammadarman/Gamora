@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Favorites — PLAYZONE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/category.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body style="--cat-color:#ff5d7a;">
+
+  <header class="cat-topbar">
+    <a href="index.html" class="home-link">← Home</a>
+    <div class="logo">
+      <span class="logo-mark">▣</span>
+      <span class="logo-text">PLAYZONE</span>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search games…">
+        <button class="search-btn" id="searchBtn" aria-label="Search">⌕</button>
+      </div>
+      <div class="auth-area">
+        <div class="auth-logged-out">
+          <a href="login.html" class="auth-btn ghost">Login</a>
+          <a href="signup.html" class="auth-btn solid">Sign Up</a>
+        </div>
+        <a href="profile.html" class="auth-logged-in hidden">
+          <span class="auth-username">👤 Account</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="cat-hero">
+    <p class="cat-eyebrow">saved for later</p>
+    <h1 class="cat-title">♥ Your Favorites</h1>
+    <p class="cat-count" id="favCount">Loading…</p>
+  </section>
+
+  <main class="cat-cards-section">
+    <div class="cards-grid" id="favGrid"></div>
+  </main>
+
+  <footer class="foot">
+    <p>PLAYZONE — tap the heart on any game card to add or remove it here. Log in to keep this list on every device.</p>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/games.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/game-library.js"></script>
+<script src="js/search.js"></script>
+<script src="js/script.js"></script>
+<script>
+  function renderFavPage() {
+    const favGames = getFavoriteGames();
+    renderGameGrid(
+      document.getElementById("favGrid"),
+      favGames,
+      "No favorites yet — tap the heart on any game card to save it here."
+    );
+    document.getElementById("favCount").textContent =
+      favGames.length === 0
+        ? "Nothing saved yet"
+        : `${favGames.length} game${favGames.length === 1 ? "" : "s"} saved`;
+  }
+
+  document.addEventListener("DOMContentLoaded", renderFavPage);
+  // Cloud favorites can arrive slightly after the initial render if the
+  // user just logged in — refresh once that sync finishes.
+  document.addEventListener("playzone:favorites-synced", renderFavPage);
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLAYZONE — Play something</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="logo">
+      <span class="logo-mark">▣</span>
+      <span class="logo-text">PLAYZONE</span>
+    </div>
+
+    <div class="topbar-right">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search for a game…">
+        <button class="search-btn" id="searchBtn" aria-label="Search">⌕</button>
+      </div>
+      <a href="favorites.html" class="fav-nav-link">♥ Favorites</a>
+      <div class="auth-area">
+        <div class="auth-logged-out">
+          <a href="login.html" class="auth-btn ghost">Login</a>
+          <a href="signup.html" class="auth-btn solid">Sign Up</a>
+        </div>
+        <a href="profile.html" class="auth-logged-in hidden">
+          <span class="auth-username">👤 Account</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="hero-eyebrow">no downloads. no accounts. just pick a cabinet.</p>
+    <h1 class="hero-title">What are we<br>playing today?</h1>
+    <p class="hero-sub">Pick a category below, grab a game, and it opens right here in your browser.</p>
+  </section>
+
+  <section class="home-section hidden" id="recentSection">
+    <p class="home-section-heading">CONTINUE PLAYING</p>
+    <div class="cards-grid" id="recentGrid"></div>
+  </section>
+
+  <section class="home-section">
+    <p class="home-section-heading">TRENDING NOW</p>
+    <div class="cards-grid" id="trendingGrid"></div>
+  </section>
+
+  <section class="home-section">
+    <p class="home-section-heading">CATEGORIES</p>
+    <main class="categories" id="categories">
+
+      <a class="cab" href="racing.html" style="--cab-color:#ff6b3d;">
+        <div class="cab-screen">
+          <span class="cab-icon">🏎️</span>
+        </div>
+        <span class="cab-label">Racing</span>
+      </a>
+
+      <a class="cab" href="action.html" style="--cab-color:#ff3d6b;">
+        <div class="cab-screen">
+          <span class="cab-icon">⚔️</span>
+        </div>
+        <span class="cab-label">Action</span>
+      </a>
+
+      <a class="cab" href="puzzle.html" style="--cab-color:#3ddc97;">
+        <div class="cab-screen">
+          <span class="cab-icon">🧩</span>
+        </div>
+        <span class="cab-label">Puzzle</span>
+      </a>
+
+      <a class="cab" href="sports.html" style="--cab-color:#4d9dff;">
+        <div class="cab-screen">
+          <span class="cab-icon">🏀</span>
+        </div>
+        <span class="cab-label">Sports</span>
+      </a>
+
+      <a class="cab" href="dressup.html" style="--cab-color:#f2a71b;">
+        <div class="cab-screen">
+          <span class="cab-icon">👗</span>
+        </div>
+        <span class="cab-label">Dress Up</span>
+      </a>
+
+      <a class="cab" href="cooking.html" style="--cab-color:#ff9f4d;">
+        <div class="cab-screen">
+          <span class="cab-icon">🍔</span>
+        </div>
+        <span class="cab-label">Cooking</span>
+      </a>
+
+      <a class="cab" href="2-player.html" style="--cab-color:#c17bff;">
+        <div class="cab-screen">
+          <span class="cab-icon">👥</span>
+        </div>
+        <span class="cab-label">2 Player</span>
+      </a>
+
+      <a class="cab" href="multiplayer.html" style="--cab-color:#3ddccb;">
+        <div class="cab-screen">
+          <span class="cab-icon">🌐</span>
+        </div>
+        <span class="cab-label">Multiplayer</span>
+      </a>
+
+    </main>
+  </section>
+
+  <footer class="foot">
+    <p>PLAYZONE — pick a category above to browse games.</p>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/games.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/recent.js"></script>
+<script src="js/game-library.js"></script>
+<script src="js/search.js"></script>
+<script src="js/script.js"></script>
+<script>
+  function renderRecentSection() {
+    const recentGames = getRecentlyPlayedGames();
+    const section = document.getElementById("recentSection");
+    if (recentGames.length > 0) {
+      section.classList.remove("hidden");
+      renderGameGrid(document.getElementById("recentGrid"), recentGames);
+    } else {
+      section.classList.add("hidden");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderGameGrid(document.getElementById("trendingGrid"), getFeaturedGames(8));
+    renderRecentSection();
+  });
+
+  // A cloud sync after login can bring in recently-played games that
+  // weren't known locally yet — refresh the section when that happens.
+  document.addEventListener("playzone:recent-synced", renderRecentSection);
+</script>
+</body>
+</html>

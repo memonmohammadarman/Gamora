@@ -1,0 +1,357 @@
+/* Extends style.css tokens. --cat-color is set inline on <body>, same
+   pattern as category.css, so the game page picks up its category's accent. */
+
+.game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px clamp(20px, 6vw, 64px) 0;
+}
+
+.game-topbar .home-link { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 600; }
+.game-topbar .home-link:hover { color: var(--text); }
+
+.game-hero {
+  padding: clamp(20px, 5vw, 36px) clamp(20px, 6vw, 64px) 0;
+  max-width: 720px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cat-color);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+.game-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 10px;
+}
+
+.game-title-row .icon { font-size: 34px; }
+
+.game-title-row h1 {
+  font-family: "Bungee", sans-serif;
+  font-size: clamp(24px, 4.5vw, 36px);
+  margin: 0;
+}
+
+.game-tagline {
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 4px;
+  max-width: 60ch;
+}
+
+.game-controls-hint {
+  color: var(--text-dim);
+  font-size: 13px;
+  margin: 0 0 24px;
+}
+
+.game-controls-hint strong { color: var(--text); }
+
+/* ---------- Game panel: canvas + overlay + action bar ---------- */
+
+.game-panel {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.game-area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 400 / 700;
+  max-height: 78vh;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0c0912;
+}
+
+.game-area:fullscreen {
+  max-height: 100vh;
+  aspect-ratio: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0c0912;
+}
+
+.game-area:fullscreen .game-canvas {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.touch-controls {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px;
+  pointer-events: none;
+}
+
+.touch-btn {
+  pointer-events: auto;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--cat-color) 50%, var(--line));
+  background: color-mix(in srgb, var(--cat-color) 18%, #0c0912 82%);
+  color: var(--text);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-btn:active { background: color-mix(in srgb, var(--cat-color) 35%, #0c0912 65%); }
+
+@media (min-width: 900px) {
+  .touch-controls { display: none; }
+}
+
+/* ---------- Overlays (start / countdown / game over) ---------- */
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+  background: rgba(12, 9, 18, 0.86);
+  backdrop-filter: blur(2px);
+}
+
+.game-overlay.hidden { display: none; }
+
+.overlay-emoji { font-size: 44px; }
+
+.overlay-title {
+  font-family: "Bungee", sans-serif;
+  font-size: clamp(20px, 4vw, 28px);
+  margin: 0;
+}
+
+.overlay-sub {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: 0;
+  max-width: 32ch;
+}
+
+.countdown-number {
+  font-family: "Bungee", sans-serif;
+  font-size: 72px;
+  color: var(--cat-color);
+}
+
+.overlay-score-row {
+  display: flex;
+  gap: 28px;
+  margin: 4px 0 6px;
+}
+
+.overlay-score-row div { text-align: center; }
+
+.overlay-score-label {
+  color: var(--text-dim);
+  font-size: 12px;
+  text-transform: none;
+  margin: 0 0 2px;
+}
+
+.overlay-score-value {
+  font-family: "Bungee", sans-serif;
+  font-size: 22px;
+  margin: 0;
+}
+
+.overlay-new-best {
+  color: var(--cat-color);
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.big-btn {
+  background: var(--cat-color);
+  color: #14101c;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.big-btn:hover { transform: scale(1.05); }
+
+/* ---------- Action bar under the game ---------- */
+
+.game-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.icon-btn-group { display: flex; gap: 8px; }
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  color: var(--text);
+  font-size: 17px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.icon-btn:hover { border-color: var(--cat-color); }
+.icon-btn.muted { opacity: 0.5; }
+.icon-btn:focus-visible, .big-btn:focus-visible { outline: 2px solid var(--cat-color); outline-offset: 3px; }
+
+.score-bar {
+  display: flex;
+  gap: 22px;
+}
+
+.score-bar div { text-align: right; }
+
+.score-bar .label {
+  color: var(--text-dim);
+  font-size: 11px;
+  margin: 0;
+}
+
+.score-bar .value {
+  font-family: "Bungee", sans-serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+/* ---------- Favorite button, stats row, star rating (in the hero) ---------- */
+
+.fav-btn-large {
+  margin-left: auto;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.fav-btn-large:hover { border-color: var(--cat-color); }
+.fav-btn-large.is-favorite { color: var(--cat-color); border-color: var(--cat-color); }
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.stats-row.hidden { display: none; }
+
+.stat-chip {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+.your-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 28px;
+}
+
+.your-rating-label {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.star-row { display: flex; gap: 2px; }
+
+.star {
+  background: none;
+  border: none;
+  color: var(--line);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.star.filled { color: var(--cat-color); }
+
+/* ---------- Related games ---------- */
+/* Reuses the shared .game-card component from cards.css via .cards-grid,
+   so "You may also like" always looks identical to every other game grid. */
+
+.related-section {
+  padding: 10px clamp(20px, 6vw, 64px) 70px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.related-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dim);
+  margin: 0 0 16px;
+}
+
+@media (max-width: 480px) {
+  .game-action-bar { flex-direction: column; align-items: stretch; }
+  .score-bar { justify-content: space-between; }
+  .game-title-row { flex-wrap: wrap; }
+  .fav-btn-large { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .big-btn, .icon-btn, .related-card { transition: none; }
+}

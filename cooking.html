@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cooking Games — PLAYZONE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/category.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body style="--cat-color:#ff9f4d;">
+
+  <header class="cat-topbar">
+    <a href="index.html" class="home-link">← Home</a>
+    <div class="logo">
+      <span class="logo-mark">▣</span>
+      <span class="logo-text">PLAYZONE</span>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search games…">
+        <button class="search-btn" id="searchBtn" aria-label="Search">⌕</button>
+      </div>
+      <a href="favorites.html" class="fav-nav-link">♥ Favorites</a>
+      <div class="auth-area">
+        <div class="auth-logged-out">
+          <a href="login.html" class="auth-btn ghost">Login</a>
+          <a href="signup.html" class="auth-btn solid">Sign Up</a>
+        </div>
+        <a href="profile.html" class="auth-logged-in hidden">
+          <span class="auth-username">👤 Account</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="cat-hero">
+    <p class="cat-eyebrow">order up</p>
+    <h1 class="cat-title">🍔 Cooking Games</h1>
+    <p class="cat-count" id="catCount">Loading games…</p>
+  </section>
+
+  <main class="cat-cards-section">
+    <div class="cards-grid" id="gameGrid"></div>
+  </main>
+
+  <footer class="foot">
+    <p>PLAYZONE — every game here is pulled live from js/games.js. Add a game there and it shows up automatically.</p>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/games.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/game-library.js"></script>
+<script src="js/search.js"></script>
+<script src="js/script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => renderCategoryPage("cooking"));
+</script>
+</body>
+</html>
